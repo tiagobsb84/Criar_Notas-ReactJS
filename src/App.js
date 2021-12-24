@@ -24,11 +24,22 @@ class App extends Component {
     this.setState(novoEstado);
   }
 
+  deletarNotas(index){
+    //pega o estado do array de notas.
+    let arrayNotas = this.state.notas;
+    arrayNotas.splice(index, 1);
+    //esse vai setar um novo array de notas.
+    this.setState({notas:arrayNotas})
+  }
+
   render() {
     return (
       <section className="conteudo">
         <CadastroNotas criarNota={this.criarNota.bind(this)} />
-        <ListaNotas notas={this.state.notas} />
+        <ListaNotas
+          apagaNotas={this.deletarNotas.bind(this)} 
+          notas={this.state.notas} 
+        />
       </section>
     );
   }
