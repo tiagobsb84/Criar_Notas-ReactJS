@@ -5,13 +5,15 @@ import './index.css';
 
 import CadastroNotas from './components/cadastroNotas/CadastroNotas';
 import ListaNotas from './components/criarNotas/ListaNotas';
+import ListaDeCategorias from './components/ListaCategorias';
 
 class App extends Component {
 
   constructor() {
     super();
     this.state = {
-      notas: []
+      notas: [],
+      categorias: []
     }
   }
 
@@ -21,6 +23,12 @@ class App extends Component {
     const novoEstado = {
       notas: novaArrayLista
     }
+    this.setState(novoEstado);
+  }
+
+  adicionarCategoria(nomeCategoria){
+    const novoArrayCategoria = [...this.state.categorias, nomeCategoria]
+    const novoEstado = {...this.state, categorias: novoArrayCategoria};
     this.setState(novoEstado);
   }
 
@@ -36,10 +44,16 @@ class App extends Component {
     return (
       <section className="conteudo">
         <CadastroNotas criarNota={this.criarNota.bind(this)} />
-        <ListaNotas
-          apagaNotas={this.deletarNotas.bind(this)} 
-          notas={this.state.notas} 
-        />
+        <main className='conteudo-principal'>
+          <ListaDeCategorias 
+            adicionarCategoria={this.adicionarCategoria.bind(this)}
+            categorias={this.state.categorias} 
+          />
+          <ListaNotas
+            apagaNotas={this.deletarNotas.bind(this)} 
+            notas={this.state.notas} 
+          />
+        </main>
       </section>
     );
   }
