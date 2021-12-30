@@ -16,6 +16,7 @@ export default class ListaNotas extends Component{
                             apagaNotas={this.props.apagaNotas}
                             titulo={nota.titulo} 
                             texto={nota.texto}
+                            categoria={nota.categoria}
                         />
                     </li>
                    );
